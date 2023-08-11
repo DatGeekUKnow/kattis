@@ -24,7 +24,7 @@ int main()
             candySum += trash % numChildren;
         }
 
-        if (numChildren ==0 || candySum % numChildren  ==  0)
+        if (numChildren == 0 || candySum % numChildren  ==  0)
         {
             cout << "YES" << endl;
         }
