@@ -5,34 +5,26 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-double fraction;
-char end;
 int main()
 {
-    int tests;
+    long tests;
     cin >> tests;
     
     for (int i = 0; i < tests; i++)
     {
         
-        int numChildren = 0;
+        long numChildren = 0;
         cin >> numChildren;
-        
-        if (numChildren == 0) 
-        {
-            cout << "YES" << endl;
-            continue;
-        }
 
-        double candySum = 0;
+        long candySum = 0;
         for (int j = 0; j < numChildren; j++)
         {
-            int trash = 0;
+            long trash = 0;
             cin >> trash;
-            candySum += trash;
+            candySum += trash % numChildren;
         }
-        candySum = candySum / numChildren;
-        if (modf(candySum, &fraction) == 0.0)
+
+        if (numChildren ==0 || candySum % numChildren  ==  0)
         {
             cout << "YES" << endl;
         }
