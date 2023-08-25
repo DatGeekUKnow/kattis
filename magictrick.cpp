@@ -9,39 +9,22 @@ using std::string;
 
 int main()
 {
-    string inp;
-    cin >> inp;
-    for (int i = 0; i < inp.size()-2; i++)
+    string input = "";
+    cin >> input;
+    string seen = "";
+    for (int i = 0; i < input.length(); i++)
     {
-        if (inp[i] == inp[i+2]) 
+        if (std::find(seen.begin(), seen.end(), input[i]) != seen.end())
         {
-            cout << "0" << endl;
+            cout << 0 << endl;
             return 0;
         }
-    }
-    
-    cout << "1" << endl;
-    
-    test("robust");
-    test("icpc");
-}
-
-
-
-int test()
-{
-    string input;
-    cin >> input;
-    bool isDupe = false;
-    for(int i = 0; i < input.size(); ++i)
-    {
-        if (std::find(input.begin(), input.end(), input[i]) != input.end())
+        else
         {
-            isDupe = true;
+            seen += input[i];
         }
     }
 
-    cout << ((isDupe || input.size() < 2)? "1" : "0") << endl;
-
+    cout << 1 << endl;
     return 0;
 }
