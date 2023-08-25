@@ -29,49 +29,43 @@ int main ()
     
     int hops = 0;
     vector<int> memory;
+    // check if the magic number is on the start square
     while(playing)
     {
-        //cout << board[frogloc-1] << std::endl;
-        if (frogloc < 1)
-        {
-            result = left;
-            playing = false;
-            break;
-        }
-        
-        // check if the magic number is on the start square
+        // End cases
+        // frog is on magic number
+        // Magic
         if (magic_number == board[frogloc-1])
         {
             result = magic;
             playing = false;
             break;
         }
-        if (board[frogloc-1] >= 1)
+
+        // frog falls off left
+        // Left
+        // Frog falls off left
+        if (frogloc < 1)
         {
-            //positive
-            frogloc += board[frogloc-1];
-            hops++;
-            if (frogloc > board_squares)
-            {
-                result = right;
-                playing = false;
-                break;
-            }
+            result = left;
+            playing = false;
+            break;
         }
-        else
+
+        // frog falls off right
+        // Right
+        // Frog falls off right side
+        if (frogloc > board_squares)
         {
-            //negative
-            frogloc -= abs(board[frogloc-1]);
-            hops++;
-            if (frogloc < 0)
-            {
-                result = left;
-                playing = false;
-                break;
-            }
+            result = right;
+            playing = false;
+            break;
         }
         
-        if (std::find(memory.begin(), memory.end(), board[frogloc-1]) != memory.end())
+        // frog has been here before 
+        // Cycle
+        // else add to memory
+        if (std::find(memory.begin(), memory.end(), frogloc-1) != memory.end())
         {
             result = cycle;
             playing = false;
@@ -79,8 +73,26 @@ int main ()
         }
         else
         {
-            memory.push_back(board[frogloc-1]);
+            memory.push_back(frogloc-1);
         }
+
+
+        // Move frog right if on positive number
+        if (board[frogloc-1] >= 1)
+        {
+            //positive
+            frogloc += board[frogloc-1];
+            hops++;
+        }
+        // Move frog left if on negative number
+        else
+        {
+            //negative
+            frogloc -= abs(board[frogloc-1]);
+            hops++;
+        }
+        
+        
     }
     
     switch(result)
