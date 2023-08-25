@@ -13,17 +13,15 @@ int main()
 {
     string temp;
     vector<string> words;
+    bool isDupe = false;
     while (cin >> temp)
     {
+        if (std::find(words.begin(), words.end(), temp) != words.end())
+        {
+            isDupe = true;
+        }
         words.push_back(temp);
     }
 
-    for (int i = 0; i < words.size(); ++i)
-    {
-        auto iter = std::find(words.begin(), words.end(), words[i]);
-        if (iter != words.end() && iter - words.begin() != i) cout << "yes" << endl;
-        return 0;
-    }
-
-    cout << "no" << endl;
+    cout << (isDupe? "no" : "yes") << endl;
 }
