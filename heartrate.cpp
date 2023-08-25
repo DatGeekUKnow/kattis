@@ -12,16 +12,19 @@ int main()
 
     cin >> numCases;
     
-    cout.precision(5);
+    cout.precision(4);
     cout << std::fixed;
     for (int i = 0; i < numCases; i++)
     {
         cin >> beats >> seconds;
-        double ratio = (beats / seconds);
-        double bpm = ratio * 60;
-        double abpm = bpm / ratio;
+        double bpm = (beats / seconds) * 60;
+
+        double variance = 60/seconds;
+        
+        double abpm = bpm - variance;
+        double max_bpm = bpm + variance;
         cout << abpm;
-        cout << " " << bpm << endl;
+        cout << " " << bpm << " " << max_bpm << endl;
 
     }
 
