@@ -1,3 +1,5 @@
+//  08/22/2023 Pair Programming with Gavin McCulley
+// https://open.kattis.com/problems/1dfroggereasy
 #include <iostream>
 #include <vector>
 #include <algorithm>
