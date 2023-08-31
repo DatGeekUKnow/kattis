@@ -117,6 +117,12 @@ int main()
     string result = DFS(startNode, destNode);
     cout << ((result == "") ? "no route found" : result) << endl;
 
+    for (auto n : locations)
+    {
+        delete n;
+    }
+    locations.clear();
+
     // all connections have been read in and established.
     return 0;
 }
